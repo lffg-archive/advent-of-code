@@ -18,7 +18,7 @@ function part1(sum: number, list: number[]): number {
     }
   }
 
-  throw new Error('No match (part 1).');
+  throw new Error('No match.');
 }
 
 // O(n^2)
@@ -34,7 +34,7 @@ function part2(sum: number, list: number[]): number {
     }
   }
 
-  throw new Error('No match (part 2).');
+  throw new Error('No match.');
 }
 
 //
