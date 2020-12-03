@@ -1,0 +1,11 @@
+{
+  "include": ["2020"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "noEmit": true,
+    "target": "esnext",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": true
+  }
+}
