@@ -1,5 +1,5 @@
-import { fetchInput } from '../shared/input';
-import { measure } from '../shared/perf';
+import { readFileSync } from 'fs';
+import { print } from '../shared/out';
 
 function walk(map: string[], right: number, down: number): number {
   let treesEncountered = 0;
@@ -40,7 +40,9 @@ function part2(map: string[]) {
   ].reduce((a, [right, down]) => a * walk(map, right, down), 1);
 }
 
-const input = fetchInput(3).split('\n');
+const input = readFileSync(__dirname + '/input.txt', 'utf8')
+  .trim()
+  .split('\n');
 
-console.log(measure('Part 1', () => part1(input)));
-console.log(measure('Part 2', () => part2(input)));
+print('Part 1', () => part1(input));
+print('Part 2', () => part2(input));

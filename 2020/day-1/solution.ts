@@ -1,14 +1,7 @@
-import { fetchInput } from '../shared/input';
-import { measure } from '../shared/perf';
-
-//
-// SOLUTIONS
-//
+import { readFileSync } from 'fs';
+import { print } from '../shared/out';
 
 function part1(sum: number, list: number[]): number {
-  // Assuming that `Set.prototype.has` is of complexity `O(1)`, this solution
-  // has a complexity of `O(n)`.
-
   const set = new Set(list);
 
   for (const i of set) {
@@ -21,7 +14,6 @@ function part1(sum: number, list: number[]): number {
   throw new Error('No match.');
 }
 
-// O(n^2)
 function part2(sum: number, list: number[]): number {
   const set = new Set(list);
 
@@ -37,11 +29,8 @@ function part2(sum: number, list: number[]): number {
   throw new Error('No match.');
 }
 
-//
-// INPUTS AND CONSTANTS
-//
-
-const input = fetchInput(1)
+const input = readFileSync(__dirname + '/input.txt', 'utf8')
+  .trim()
   .split('\n')
   .map((i) => parseInt(i, 10));
 
@@ -51,10 +40,5 @@ const sum = 2020;
 // OUTPUT
 //
 
-const part1Out = measure('Part 1 - O(n)', () => part1(sum, input));
-const part2Out = measure('Part 2 - O(n^2)', () => part2(sum, input));
-
-console.log();
-
-console.log('Part 1:', part1Out);
-console.log('Part 2:', part2Out);
+print('Part 1', () => part1(sum, input));
+print('Part 2', () => part2(sum, input));

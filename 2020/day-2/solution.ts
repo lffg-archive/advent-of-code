@@ -1,7 +1,7 @@
-import { fetchInput } from '../shared/input';
-import { measure } from '../shared/perf';
+import { readFileSync } from 'fs';
+import { print } from '../shared/out';
 
-const input = fetchInput(2).split('\n');
+// TODO. Refactor this ugly (and bad) code.
 
 function countLetter(str: string, letter: string): number {
   let count = 0;
@@ -12,8 +12,6 @@ function countLetter(str: string, letter: string): number {
 function solve1(list: string[]) {
   let count = 0;
 
-  // Example entry.
-  // 5-19 f: ffffffffffffffffffcf
   for (const entry of list) {
     const [rawRange, rawLetter, pwd] = entry.split(' ');
     const letter = rawLetter[0];
@@ -32,8 +30,6 @@ function solve1(list: string[]) {
 function solve2(list: string[]) {
   let count = 0;
 
-  // Example entry.
-  // 5-19 f: ffffffffffffffffffcf
   for (const entry of list) {
     const [rawRange, rawLetter, pwd] = entry.split(' ');
     const letter = rawLetter[0];
@@ -58,11 +54,9 @@ function solve2(list: string[]) {
   return count;
 }
 
-console.log(
-  '1',
-  measure('Part 1', () => solve1(input))
-);
-console.log(
-  '2',
-  measure('Part 2', () => solve2(input))
-);
+const input = readFileSync(__dirname + '/input.txt', 'utf8')
+  .trim()
+  .split('\n');
+
+print('Part 1', () => solve1(input));
+print('Part 2', () => solve2(input));
