@@ -36,9 +36,5 @@ const input = readFileSync(__dirname + '/input.txt', 'utf8')
 
 const sum = 2020;
 
-//
-// OUTPUT
-//
-
 print('Part 1', () => part1(sum, input));
 print('Part 2', () => part2(sum, input));
