@@ -9,8 +9,6 @@ const countLetter = (str: string, letter: string): number =>
 const withinBounds = (n: number, min: number, max: number): boolean =>
   min <= n && n <= max;
 
-const xor = (a: boolean, b: boolean) => Number(a) ^ Number(b);
-
 export function part1(list: string[]) {
   let count = 0;
 
@@ -34,7 +32,7 @@ export function part2(list: string[]) {
     const [rawRange, [letter], pwd] = entry.split(' ');
     const [posA, posB] = rawRange.split('-').map(toInt);
 
-    if (xor(pwd[posA - 1] === letter, pwd[posB - 1] === letter)) {
+    if ((pwd[posA - 1] === letter) !== (pwd[posB - 1] === letter)) {
       count++;
     }
   }
