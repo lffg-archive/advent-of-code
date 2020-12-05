@@ -4,11 +4,11 @@ import { print } from '../shared/out';
 function walk(map: string[], right: number, down: number): number {
   let treesEncountered = 0;
   let movedRight = 0;
-  const LINE_LENGTH = map[0].length;
+  const lineLength = map[0].length;
 
   for (let i = 0; i < map.length; i += down) {
     const currentLine = map[i];
-    const currentBlock = currentLine[movedRight % LINE_LENGTH];
+    const currentBlock = currentLine[movedRight % lineLength];
 
     if (currentBlock === '#') {
       treesEncountered++;
