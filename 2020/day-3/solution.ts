@@ -20,12 +20,12 @@ function walk(map: string[], right: number, down: number): number {
   return treesEncountered;
 }
 
-function part1(map: string[]) {
+export function part1(map: string[]) {
   // Right 3, down 1.
   return walk(map, 3, 1);
 }
 
-function part2(map: string[]) {
+export function part2(map: string[]) {
   return [
     [1, 1], // Right 1, down 1.
     [3, 1], // Right 3, down 1. (This is the slope you already checked.)

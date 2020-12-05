@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { print } from '../shared/out';
 
-function part1(sum: number, list: number[]): number {
+export function part1(sum: number, list: number[]): number {
   const set = new Set(list);
 
   for (const i of set) {
@@ -14,7 +14,7 @@ function part1(sum: number, list: number[]): number {
   throw new Error('No match.');
 }
 
-function part2(sum: number, list: number[]): number {
+export function part2(sum: number, list: number[]): number {
   const set = new Set(list);
 
   for (const i of set) {

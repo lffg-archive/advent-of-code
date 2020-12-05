@@ -10,7 +10,7 @@ import { print } from '../shared/out';
 // pid (Passport ID)
 // cid (Country ID)   -- May ignore.
 
-function part1(rawPassports: string[]): number {
+export function part1(rawPassports: string[]): number {
   let validCount = 0;
 
   for (const rawPassport of rawPassports) {
@@ -32,7 +32,7 @@ function part1(rawPassports: string[]): number {
   return validCount;
 }
 
-function part2(rawPassports: string[]): number {
+export function part2(rawPassports: string[]): number {
   let validCount = 0;
 
   for (const rawPassport of rawPassports) {

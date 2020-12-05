@@ -9,7 +9,7 @@ function countLetter(str: string, letter: string): number {
   return count;
 }
 
-function solve1(list: string[]) {
+export function part1(list: string[]) {
   let count = 0;
 
   for (const entry of list) {
@@ -27,7 +27,7 @@ function solve1(list: string[]) {
   return count;
 }
 
-function solve2(list: string[]) {
+export function part2(list: string[]) {
   let count = 0;
 
   for (const entry of list) {
@@ -58,5 +58,5 @@ const input = readFileSync(__dirname + '/input.txt', 'utf8')
   .trim()
   .split('\n');
 
-print('Part 1', () => solve1(input));
-print('Part 2', () => solve2(input));
+print('Part 1', () => part1(input));
+print('Part 2', () => part2(input));
