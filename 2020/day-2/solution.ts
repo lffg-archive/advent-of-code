@@ -1,25 +1,25 @@
 import { readFileSync } from 'fs';
 import { print } from '../shared/out';
 
-// TODO. Refactor this ugly (and bad) code.
+const toInt = (n: string): number => parseInt(n, 10);
 
-function countLetter(str: string, letter: string): number {
-  let count = 0;
-  for (const l of str) if (l === letter) count++;
-  return count;
-}
+const countLetter = (str: string, letter: string): number =>
+  [...str].reduce((acc, curr) => acc + Number(curr === letter), 0);
+
+const withinBounds = (n: number, min: number, max: number): boolean =>
+  min <= n && n <= max;
+
+const xor = (a: boolean, b: boolean) => Number(a) ^ Number(b);
 
 export function part1(list: string[]) {
   let count = 0;
 
   for (const entry of list) {
-    const [rawRange, rawLetter, pwd] = entry.split(' ');
-    const letter = rawLetter[0];
+    const [rawRange, [letter], pwd] = entry.split(' ');
+    const [min, max] = rawRange.split('-').map(toInt);
+    const letterCount = countLetter(pwd, letter);
 
-    const [min, max] = rawRange.split('-').map((n) => parseInt(n, 10));
-    const am = countLetter(pwd, letter);
-
-    if (min <= am && am <= max) {
+    if (withinBounds(letterCount, min, max)) {
       count++;
     }
   }
@@ -31,22 +31,10 @@ export function part2(list: string[]) {
   let count = 0;
 
   for (const entry of list) {
-    const [rawRange, rawLetter, pwd] = entry.split(' ');
-    const letter = rawLetter[0];
+    const [rawRange, [letter], pwd] = entry.split(' ');
+    const [posA, posB] = rawRange.split('-').map(toInt);
 
-    const [posA, posB] = rawRange.split('-').map((n) => parseInt(n, 10));
-
-    let matched = 0;
-
-    if (pwd[posA - 1] === letter) {
-      matched++;
-    }
-
-    if (pwd[posB - 1] === letter) {
-      matched++;
-    }
-
-    if (matched === 1) {
+    if (xor(pwd[posA - 1] === letter, pwd[posB - 1] === letter)) {
       count++;
     }
   }
