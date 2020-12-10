@@ -8,10 +8,12 @@ type Pair<T> = [T, T];
  *  - The first element being the string with the 7 first characters,
  *  - The second element being the string with the 3 last characters.
  */
-const splitPath = (path: string): Pair<string> => [
-  path.slice(0, 7),
-  path.slice(7, 10)
-];
+function splitPath(path: string): Pair<string> {
+  return [
+    path.slice(0, 7),
+    path.slice(7, 10)
+  ];
+}
 
 /**
  * For a given "binary path string", finds its number position.
