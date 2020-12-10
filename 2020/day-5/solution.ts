@@ -9,44 +9,16 @@ type Pair<T> = [T, T];
  *  - The second element being the string with the 3 last characters.
  */
 function splitPath(path: string): Pair<string> {
-  return [
-    path.slice(0, 7),
-    path.slice(7, 10)
-  ];
+  return [path.slice(0, 7), path.slice(7, 10)];
 }
 
 /**
  * For a given "binary path string", finds its number position.
- *
- * This functions computes the position by iterating over each `path`'s
- * characters, in reverse order. To do so, it calculates a number for each
- * character's index using the following formula:
- *
- *     2^(len - (i + 1))
- *                          Where: * `len` is `path`'s length.
- *                                 * `i` is current character's index.
- *
- * If the character is an `additiveChar`, the previous operation result is
- * considered. Otherwise, `0` will be taken.
- *
- * Eg., given "FBFBBFF" as `path` and "B" as `additiveChar`:
- * Notice that `7` is the string's length and the operation is taken from RTL.
- * (reverse order)
- *
- *  - "F" (index 6) =>  2^(7 - (6 + 1)) = 2^0 = 1   => F is NOT additiveChar, so, take 0.
- *  - "F" (index 5) =>  2^(7 - (5 + 1)) = 2^1 = 2   => F is NOT additiveChar, so, take 0.
- *  - "B" (index 4) =>  2^(7 - (4 + 1)) = 2^2 = 4   => B IS     additiveChar, so, take 4.
- *  - "B" (index 3) =>  2^(7 - (3 + 1)) = 2^3 = 8   => B IS     additiveChar, so, take 8.
- *  - "F" (index 2) =>  2^(7 - (2 + 1)) = 2^4 = 16  => F is NOT additiveChar, so, take 0.
- *  - "B" (index 1) =>  2^(7 - (1 + 1)) = 2^5 = 32  => B IS     additiveChar, so, take 32.
- *  - "F" (index 0) =>  2^(7 - (0 + 1)) = 2^6 = 64  => B is NOT additiveChar, so, take 0.
- *
- * The result is the total sum: 0 + 0 + 4 + 8 + 0 + 32 + 0, which is 44.
  */
 function findPos(path: string, additiveChar: string): number {
   const toAdd = (i: number) => 2 ** (path.length - (i + 1));
 
-  return [...path].reduceRight(
+  return [...path].reduce(
     (pos, char, i) => pos + (char === additiveChar ? toAdd(i) : 0),
     0
   );
